@@ -1,0 +1,62 @@
+package sharpr_chapt14;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Arrays;
+
+
+public class SharpR_Chapt14 {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Translate t = new Translate();
+        SaveLine s = new SaveLine();
+        ArrayList<String> translatedWord = new ArrayList<String>();
+        String choice = "y";
+        System.out.println("""
+                           
+                           Pig Latin Translator
+                           """);
+        
+        while (choice.equalsIgnoreCase("y")) {
+            System.out.print("Enter a line: ");
+            String userLine = sc.nextLine();
+            //checking if user has input sending error if no input thows error
+            if(userLine.isEmpty()) {
+                System.out.println("");
+                System.out.println("Must have words to translate.");
+                System.out.println();
+                choice = "y";
+            }else {
+                //saving user Input into file
+                s.SaveLine(userLine);
+                // splitting input into different words and making them lowercase
+             String lowerLine = userLine.substring(0).toLowerCase();
+            String[] split = lowerLine.split(" ");
+            
+            //Getting each word into translate class
+            for (int i = 0; i < split.length; i++){
+                String word = split[i];
+                translatedWord.add(t.pigLatin(word));
+            }
+            
+            System.out.println();
+            //printing the translated word
+            for (String translatedLine: translatedWord){
+                System.out.print(translatedLine + " ");
+                //Saving translated word to file
+                s.SaveLine(translatedLine);
+            }
+            //System.out.println(Arrays.toString(split));
+            System.out.println();
+            System.out.print("""
+                               Another line? (y/n): """);
+            choice = sc.nextLine();
+            
+        }//end of if/else
+        }//end of while loop
+        System.out.print("Bye!");
+       
+    }// end of main
+       
+        }//end of class
