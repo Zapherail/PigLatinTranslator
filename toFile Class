@@ -1,0 +1,40 @@
+package sharpr_chapt14;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+
+public class SaveLine {
+    private String userLine;
+    
+    
+    public SaveLine() {
+        userLine = " ";
+        
+    }
+    
+    public void setSaveLine(String args){
+        this.userLine = userLine;
+        
+    }
+    public String getSaveLine() {
+        return userLine;
+    }
+    
+    public void SaveLine(String userLine) {
+        //creating file
+        try (PrintWriter out = new PrintWriter(
+                               new BufferedWriter(
+                               new FileWriter("rossetapig.txt")))) {
+            //writing to file
+            out.print(userLine);
+            
+        }
+        //catching error if found
+        catch (IOException e){
+          System.out.println(e);
+        }
+    }
+}
