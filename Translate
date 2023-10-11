@@ -1,0 +1,64 @@
+package sharpr_chapt14;
+
+import java.util.ArrayList;
+
+public class Translate {
+    private String wordTranslate;
+    
+    public Translate() {
+    wordTranslate = " ";
+}
+    public void setTranslate(){
+        this.wordTranslate = wordTranslate;
+    }
+    
+    public String getTranslate(){
+        return wordTranslate;
+    }
+    public String pigLatin(String wordTranslate) {
+        //creating Array List for consonant
+        ArrayList<String> lineConstant = new ArrayList<>();
+        for (int i = 0; i <= wordTranslate.length(); i++) {
+        for (char f: wordTranslate.toCharArray()){
+        //checking if word has special chacters
+        if (wordTranslate.contains("@") || wordTranslate.contains("#") || wordTranslate.contains("$")){
+         return wordTranslate;
+       }
+        //checking if stating with a vowel 
+        if (wordTranslate.startsWith("a") || wordTranslate.startsWith("e") || wordTranslate.startsWith("i") ||
+                wordTranslate.startsWith("o") || wordTranslate.startsWith("u")){
+            wordTranslate += "way";
+            return wordTranslate;
+        }
+        //checking if doesn't start with a vowel or starts with y
+        if (!wordTranslate.startsWith("a") || !wordTranslate.startsWith("e") || !wordTranslate.startsWith("i") ||
+                !wordTranslate.startsWith("o") || !wordTranslate.startsWith("u") || !wordTranslate.startsWith("y")){
+            if (wordTranslate.startsWith("a") || wordTranslate.startsWith("e") || wordTranslate.startsWith("i") ||
+                wordTranslate.startsWith("o") || wordTranslate.startsWith("u")){
+                
+                wordTranslate = String.join(wordTranslate, lineConstant);
+               }else {
+                lineConstant.add(wordTranslate);
+                wordTranslate += "ay";
+                return wordTranslate;
+            }
+        }
+    }
+        //checking if word contains y
+        if (wordTranslate.contains("y")){
+             wordTranslate += "way";
+            return wordTranslate;
+        }
+        //checking for punctuation and replacing it with whitespace
+        if (wordTranslate.endsWith("!") || wordTranslate.endsWith(".") || wordTranslate.endsWith(",")) {
+            wordTranslate = wordTranslate.replace("!"," ");
+            wordTranslate = wordTranslate.replace("."," ");
+            wordTranslate = wordTranslate.replace(","," ");
+            return wordTranslate;
+        }
+        }
+        
+        return wordTranslate;
+        
+        }
+}//end of class
